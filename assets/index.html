@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    
+    body, html
+            {
+                margin: 0; padding: 0; height: 100%; overflow: hidden;
+            }
+
+            #content
+            {
+                position:absolute; left: 0; right: 0; bottom: 0; top: 0px; 
+            }
+
+.rw-widget-wrapper-css .rw-conversation-container .rw-header.rw-with-subtitle .rw-avatar {
+    top: 1px !important;
+}
+
+
+.rw-widget-wrapper-css .rw-conversation-container #messages {
+    height: 100% !important;
+    max-height: none !important;
+}
+
+
+#footer-wrapper a {
+    color: #2585de  !important;
+}
+
+
+.rw-toggle-fullscreen-button {
+  background: linear-gradient(to bottom, rgba(250,171,15,1), rgba(168,68,13,1)) !important;
+}
+.rw-widget-wrapper-css .rw-conversation-container .rw-header {
+    background: linear-gradient(to bottom, rgba(250,171,15,1), rgba(168,68,13,1)) !important;
+}
+
+.rw-widget-wrapper-css .rw-conversation-container .rw-close-button {
+display: none !important;
+
+    background: linear-gradient(to bottom, rgba(250,171,15,1), rgba(168,68,13,1)) !important;
+}
+
+.rw-widget-wrapper-css .rw-conversation-container .rw-response {
+    max-width: 74% !important;
+}
+
+.rw-widget-wrapper-css .rw-conversation-container .rw-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 100% !important;
+    margin-right: 6px !important;
+    position: relative !important;
+    bottom: 5px !important;
+}
+
+.rw-widget-wrapper-css .rw-launcher {
+    -webkit-animation-delay: 0;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-name: slide-in;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-delay: 0;
+    -moz-animation-duration: .5s;
+    -moz-animation-name: slide-in;
+    -moz-animation-fill-mode: forwards;
+    animation-delay: 0;
+    animation-duration: .5s;
+    animation-name: slide-in;
+    animation-fill-mode: forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgba(250,171,15,1), rgba(168,68,13,1)) !important;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px 1px #b5b5b5;
+    height: 60px;
+    margin: 0;
+    width: 60px;
+    box-sizing: border-box;
+}
+
+</style>
+
+</head>
+
+<body>
+
+   <div id="webchat"/>
+  <!-- <script src="https://storage.googleapis.com/mrbot-cdn/webchat-v0.8.3.js"></script> -->
+  
+     <script src="https://chatbot-js-d0dc4.web.app/webchat.js"></script> 
+
+   <!-- <script src="webchat.js"></script>-->
+    <script>
+
+
+      WebChat.default.init({
+        selector: "#webchat",
+        initPayload: "Olá",
+        interval: 1000, // 1000 ms between each message
+        customData: { "sender": Math.floor((Math.random() * 100000000) + 1).toString()}, //teste
+        socketUrl: "https://rasa.icict.fiocruz.br/",
+        socketPath: "/socket.io/",
+        title: "Wal",
+        hideWhenNotConnected: false,
+        showFullScreenButton: true,
+        embedded: true,
+        showMessageDate: true,
+        subtitle: "www.joao.com.br",
+        inputTextFieldHint: "Digite uma menssagem",
+        connectingText: "Carregando",
+        fullScreenMode: true,
+        profileAvatar: "https://i.imgur.com/qcWevVz.jpg",
+        // openLauncherImage: 'myCustomOpenImage.png',
+        // closeLauncherImage: 'myCustomCloseImage.png',
+        params: {
+          images: {
+            dims: {
+              width: 300,
+              height: 200,
+            }
+          },
+          storage: "storage"
+        }
+      })
+ 
+ document.addEventListener("DOMContentLoaded", function(event){
+  //document.getElementsByClassName('rw-launcher')[0].click();
+  //document.getElementsByClassName('rw-toggle-fullscreen-button')[0].click();
+  //document.getElementsByClassName('rw-toggle-fullscreen-button')[0].style.display = 'none';
+
+
+ 
+  
+ 
+ 
+ });
+ 
+    </script>
+
+
+    <!--
+      Esse são os códigos inserido dentro do Bloco no Drupal
+
+    <script>
+
+
+     WebChat.default.init({
+       selector: "#webchat",
+      <?php
+global $user;
+$name = db_query("SELECT field_nome_comploe_value  FROM {field_data_field_nome_comploe} 
+   where entity_id= :uid", array(':uid' =>$user->uid))->fetchField();
+if (empty($name)) {
+echo("initPayload:" . ' "Olá" ' ) ; 
+} else {
+echo("initPayload:" . '"' . $name . '"' ) ; 
+}
+
+?>,
+       interval: 1000, // 1000 ms between each message
+       customData: { "sender": Math.floor((Math.random() * 100000000) + 1).toString()}, //teste
+      socketUrl: "https://rasa.icict.fiocruz.br/",
+       socketPath: "/socket.io/",
+       title: "Wal",
+       hideWhenNotConnected: false,
+       //embedded: true,
+       showMessageDate: true,
+       subtitle: "www.joao.com.br",
+       inputTextFieldHint: "Digite uma menssagem",
+       connectingText: "Carregando",
+       fullScreenMode: true,
+       profileAvatar: "https://i.imgur.com/qcWevVz.jpg",
+       // openLauncherImage: 'myCustomOpenImage.png',
+       // closeLauncherImage: 'myCustomCloseImage.png',
+       params: {
+         images: {
+           dims: {
+             width: 300,
+             height: 200,
+           }
+         },
+         storage: "session"
+       }
+     })
+
+document.addEventListener("DOMContentLoaded", function(event){
+ var checkExist = setInterval(function() {
+   if ($(".rw-sender").length) {
+      clearInterval(checkExist);
+
+      <?php
+global $user;
+$name = db_query("SELECT field_nome_comploe_value  FROM {field_data_field_nome_comploe} 
+   where entity_id= :uid", array(':uid' =>$user->uid))->fetchField();
+if (!empty($name)) {
+
+$str = <<<MY_MARKER
+document.getElementsByClassName('rw-sender')[0].style.display = 'none';
+MY_MARKER;
+echo($str) ; 
+} 
+?>
+
+   }
+}, 100);
+
+
+
+
+
+
+
+
+});
+
+   </script>
+ -->
+   
+</body>
+
+</html>
